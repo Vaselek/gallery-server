@@ -10,11 +10,13 @@ app.use(express.static('public'));
 app.use(cors());
 
 const users = require('./app/users');
+const photos = require('./app/photos');
 
 const port = 8000;
 
 mongoose.connect(config.dbUrl, config.mongoOptions).then(() => {
     app.use('/users', users);
+    app.use('/photos', photos);
     app.listen(port, () => {
         console.log(`Server started on ${port} port`)
     })
